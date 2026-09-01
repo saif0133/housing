@@ -480,24 +480,84 @@
     </main>
 
     <script>
-        function sendHeight() {
-  const height = document.documentElement.scrollHeight;
 
-  window.parent.postMessage(
-    {
-      type: "iframe-height",
-      height: height,
-    },
-    "https://iiacss.org"
+        <script>
+function getFullHeight() {
+
+  const body = document.body;
+  const html = document.documentElement;
+
+  let height = Math.max(
+    body.scrollHeight,
+    body.offsetHeight,
+    html.clientHeight,
+    html.scrollHeight,
+    html.offsetHeight
   );
+
+  document.querySelectorAll("body *").forEach(function(el) {
+    const rect = el.getBoundingClientRect();
+    const bottom = rect.bottom + window.scrollY;
+
+    if (bottom > height) {
+      height = bottom;
+    }
+
+    if (el.scrollHeight > height) {
+      height = el.scrollHeight;
+    }
+  });
+
+  return Math.ceil(height);
 }
 
-window.addEventListener("load", sendHeight);
+
+function sendHeight() {
+
+  requestAnimationFrame(function() {
+
+    window.parent.postMessage(
+      {
+        type: "iframe-height",
+        height: getFullHeight()
+      },
+      "https://iiacss.org"
+    );
+
+  });
+}
+
+
+window.addEventListener("load", function() {
+
+  sendHeight();
+
+  setTimeout(sendHeight, 300);
+  setTimeout(sendHeight, 1000);
+  setTimeout(sendHeight, 2000);
+
+});
+
+
 window.addEventListener("resize", sendHeight);
 
-const observer = new ResizeObserver(() => {
-  sendHeight();
+
+const resizeObserver = new ResizeObserver(sendHeight);
+
+resizeObserver.observe(document.body);
+resizeObserver.observe(document.documentElement);
+
+
+const mutationObserver = new MutationObserver(sendHeight);
+
+mutationObserver.observe(document.body, {
+  childList: true,
+  subtree: true,
+  attributes: true,
+  characterData: true
 });
+</script>
+    
 
 observer.observe(document.body);
         
