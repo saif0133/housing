@@ -479,106 +479,64 @@
 
     </main>
 
-    <script>
-
-        <script>
+   <script>
 function getFullHeight() {
-
   const body = document.body;
   const html = document.documentElement;
 
-  let height = Math.max(
+  return Math.ceil(Math.max(
     body.scrollHeight,
     body.offsetHeight,
     html.clientHeight,
     html.scrollHeight,
     html.offsetHeight
-  );
-
-  document.querySelectorAll("body *").forEach(function(el) {
-    const rect = el.getBoundingClientRect();
-    const bottom = rect.bottom + window.scrollY;
-
-    if (bottom > height) {
-      height = bottom;
-    }
-
-    if (el.scrollHeight > height) {
-      height = el.scrollHeight;
-    }
-  });
-
-  return Math.ceil(height);
+  ));
 }
-
 
 function sendHeight() {
-
-  requestAnimationFrame(function() {
-
-    window.parent.postMessage(
-      {
-        type: "iframe-height",
-        height: getFullHeight()
-      },
-      "https://iiacss.org"
-    );
-
-  });
+  window.parent.postMessage(
+    {
+      type: "iframe-height",
+      height: getFullHeight()
+    },
+    "https://iiacss.org"
+  );
 }
 
-
-window.addEventListener("load", function() {
-
+window.addEventListener("load", function () {
   sendHeight();
 
   setTimeout(sendHeight, 300);
   setTimeout(sendHeight, 1000);
   setTimeout(sendHeight, 2000);
-
 });
-
 
 window.addEventListener("resize", sendHeight);
 
-
 const resizeObserver = new ResizeObserver(sendHeight);
-
 resizeObserver.observe(document.body);
-resizeObserver.observe(document.documentElement);
 
+function switchPewView(view) {
+  const chartView = document.getElementById('pew-chart-view');
+  const dataView = document.getElementById('pew-data-view');
+  const btnChart = document.getElementById('btn-chart');
+  const btnData = document.getElementById('btn-data');
 
-const mutationObserver = new MutationObserver(sendHeight);
+  if (view === 'data') {
+    chartView.style.display = 'none';
+    dataView.style.display = 'block';
+    btnData.classList.add('active');
+    btnChart.classList.remove('active');
+  } else {
+    chartView.style.display = 'block';
+    dataView.style.display = 'none';
+    btnChart.classList.add('active');
+    btnData.classList.remove('active');
+  }
 
-mutationObserver.observe(document.body, {
-  childList: true,
-  subtree: true,
-  attributes: true,
-  characterData: true
-});
+  setTimeout(sendHeight, 50);
+}
 </script>
-    
 
-observer.observe(document.body);
-        
-        function switchPewView(view) {
-            const chartView = document.getElementById('pew-chart-view');
-            const dataView = document.getElementById('pew-data-view');
-            const btnChart = document.getElementById('btn-chart');
-            const btnData = document.getElementById('btn-data');
-
-            if (view === 'data') {
-                chartView.style.display = 'none';
-                dataView.style.display = 'block';
-                btnData.classList.add('active');
-                btnChart.classList.remove('active');
-            } else {
-                chartView.style.display = 'block';
-                dataView.style.display = 'none';
-                btnChart.classList.add('active');
-                btnData.classList.remove('active');
-            }
-        }
-    </script>
 </body>
 </html>
