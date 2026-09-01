@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفضيلات السكن لدى العراقيين: بحث مستمر عن الاستقلالية وتوجه شبابي نحو المجمعات</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Serif+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pew-text: #222222;
+            --pew-heading: #262626;
+            --pew-border: #e2e2e2;
+            --pew-chart-burgundy: #71253e;
+            --pew-chart-gold: #cfa12f;
+            --pew-chart-sand: #ded4be;
+            --font-serif: 'Noto Serif Arabic', 'Amiri', Georgia, serif;
+            --font-sans: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-serif);
+            color: var(--pew-text);
+            background-color: #ffffff;
+            line-height: 1.85;
+            font-size: 1.12rem;
+            padding: 40px 0 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .article-container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Headline */
+        h1.headline {
+            font-family: var(--font-serif);
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--pew-heading);
+            margin-bottom: 25px;
+            letter-spacing: -0.3px;
+        }
+
+        /* Hero Image */
+        .hero-figure {
+            margin: 0 0 25px 0;
+        }
+        .hero-figure img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Body Paragraphs */
+        p {
+            margin-bottom: 22px;
+            text-align: justify;
+        }
+
+        /* Sub-Headings inside article */
+        h2.section-heading {
+            font-family: var(--font-sans);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #111;
+            margin: 35px 0 16px;
+            line-height: 1.35;
+        }
+
+        /* Inline Second Image */
+        .inline-figure {
+            margin: 30px 0;
+        }
+        .inline-figure img {
+            width: 100%;
+            height: auto;
+            max-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Chart Widget */
+        .pew-chart-wrapper {
+            margin: 35px 0;
+            padding-top: 15px;
+            border-top: 2px solid #222;
+        }
+        .pew-chart-header h3 {
+            font-family: var(--font-sans);
+            font-size: 1.18rem;
+            font-weight: 700;
+            color: #111;
+            line-height: 1.35;
+            margin-bottom: 6px;
+        }
+        .pew-chart-subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 18px;
+            line-height: 1.4;
+        }
+
+        /* Chart Tab Bar */
+        .chart-controls-bar {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+            font-family: var(--font-sans);
+            font-size: 0.86rem;
+        }
+        .chart-tabs {
+            display: flex;
+            gap: 18px;
+        }
+        .chart-tab-btn {
+            cursor: pointer;
+            color: #666;
+            font-weight: 600;
+            padding: 4px 6px;
+            position: relative;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        .chart-tab-btn.active {
+            color: #000;
+            font-weight: 700;
+        }
+        .chart-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            right: 0;
+            left: 0;
+            height: 2px;
+            background: #000;
+        }
+
+        /* Chart View Elements */
+        .chart-legend-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.3fr 1.3fr 1fr;
+            text-align: center;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 10px;
+            padding-left: 5px;
+            line-height: 1.25;
+        }
+        .chart-legend-grid .legend-item {
+            padding: 0 4px;
+        }
+        .legend-burgundy { color: var(--pew-chart-burgundy); }
+        .legend-gold { color: #9c7116; }
+        .legend-sand { color: #736b59; }
+
+        .chart-data-row {
+            display: grid;
+            grid-template-columns: 2fr 3.6fr;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+        }
+        .row-label {
+            font-weight: 500;
+            color: #222;
+            text-align: right;
+            line-height: 1.25;
+        }
+        .stacked-bar-container {
+            display: flex;
+            height: 30px;
+            background: #eee;
+            overflow: hidden;
+        }
+        
+        /* Bar segment styling with hover effect */
+        .bar-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            position: relative;
+            cursor: pointer;
+            transition: opacity 0.2s ease, filter 0.2s ease;
+        }
+        .bar-segment:hover {
+            filter: brightness(1.1);
+        }
+        
+        /* Hover tooltip for numbers */
+        .bar-segment .bar-val {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            transform: translateY(2px);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .bar-segment:hover .bar-val {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .bar-burgundy {
+            background-color: var(--pew-chart-burgundy);
+            color: #ffffff;
+        }
+        .bar-gold {
+            background-color: var(--pew-chart-gold);
+            color: #111111;
+        }
+        .bar-sand {
+            background-color: var(--pew-chart-sand);
+            color: #333333;
+        }
+
+        /* Table View (Data View) */
+        .pew-data-table-container {
+            display: none;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        table.pew-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+            text-align: right;
+        }
+        table.pew-data-table th, 
+        table.pew-data-table td {
+            padding: 9px 12px;
+            border-bottom: 1px solid var(--pew-border);
+        }
+        table.pew-data-table th {
+            background-color: #fafafa;
+            font-weight: 700;
+            color: #222;
+            border-top: 1px solid var(--pew-border);
+        }
+        table.pew-data-table tr:hover td {
+            background-color: #f9fbfd;
+        }
+
+        /* Chart Footnotes */
+        .chart-footnotes {
+            margin-top: 14px;
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            color: #777;
+            line-height: 1.45;
+        }
+
+        @media (max-width: 650px) {
+            h1.headline { font-size: 1.85rem; }
+            .chart-data-row { grid-template-columns: 1fr; }
+            .chart-legend-grid { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="article-container">
+        
+        <!-- Main Headline -->
+        <h1 class="headline">تفضيلات السكن لدى العراقيين: بحث مستمر عن الاستقلالية وتوجه شبابي نحو المجمعات</h1>
+
+        <!-- Main Hero Image -->
+        <figure class="hero-figure">
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80" alt="مبانٍ ومجمعات سكنية في بغداد">
+        </figure>
+
+        <!-- Introduction Paragraph -->
+        <p>
+            عندما يفكر العراقيون في شراء منزل، لا يقتصر الأمر على مساحة العقار وسعره فقط. طبيعة السكن نفسه تلعب دوراً حاسماً. تُظهر نتائج استطلاع حديث أُجري في بغداد أن قرار الشراء اليوم يرتبط ارتباطاً وثيقاً بمستوى الخدمات المتاحة، الخصوصية، القدرة المالية، وطبيعة الحي السكني.
+        </p>
+
+        <!-- Section 1 -->
+        <h2 class="section-heading">أغلبية واضحة تفضل السكن المستقل</h2>
+        <p>
+            تشير الأرقام إلى أن السكن المرتبط بالأرض لا يزال الخيار المفضل للأغلبية. أشار نحو 83% من المشاركين في المسح إلى تفضيلهم للسكن المستقل بكافة أشكاله. وتصدر المنزل المنفصل الخيارات بنسبة 46.6%، تلاه "التاون هاوس" بنسبة 35%، بينما جاءت الشقق في بنايات تقليدية بالمرتبة الأخيرة بنسبة 16.7%.
+        </p>
+        <p>
+            لكن عند سؤال المشاركين عن نوع العقار الذي يمكنهم "شراؤه فعلياً" وفق قدراتهم، اختار 43.1% المنزل التقليدي المستقل، في حين برزت الوحدات داخل المجمعات السكنية كخيار واقعي لـ 27% منهم. وتوضح هذه الأرقام أن العزوف عن الشقق ليس مطلقاً؛ فالأشخاص الذين يفضلون الشقق يفضلونها غالباً داخل مجمع سكني متكامل، مما يشير إلى أن الطلب هنا مدفوع بخدمات المجمع أكثر من الشقة بحد ذاتها.
+        </p>
+
+        <!-- INTERACTIVE CHART / DATA COMPONENT -->
+        <div class="pew-chart-wrapper">
+            <div class="pew-chart-header">
+                <h3>توزيع تفضيلات السكن لدى المستجيبين في بغداد</h3>
+                <div class="pew-chart-subtitle">
+                    نسبة المشاركين حسب النمط السكني المفضل مقارنة بالقدرة الفعلية على الشراء ...
+                </div>
+            </div>
+
+            <!-- Tab Switcher: Chart vs Data -->
+            <div class="chart-controls-bar">
+                <div class="chart-tabs">
+                    <button class="chart-tab-btn active" id="btn-chart" onclick="switchPewView('chart')">Chart</button>
+                    <button class="chart-tab-btn" id="btn-data" onclick="switchPewView('data')">Data</button>
+                </div>
+            </div>
+
+            <!-- 1. CHART VIEW -->
+            <div id="pew-chart-view">
+                <!-- Legend Columns -->
+                <div class="chart-legend-grid">
+                    <div></div>
+                    <div class="legend-item legend-burgundy">الخيار المفضل</div>
+                    <div class="legend-item legend-gold">الشراء الفعلي الواقعي</div>
+                    <div class="legend-item legend-sand">خيارات أخرى / مستبعد</div>
+                </div>
+
+                <!-- Row 1 -->
+                <div class="chart-data-row">
+                    <div class="row-label">المنزل التقليدي المنفصل</div>
+                    <div class="stacked-bar-container">
+                        <div class="bar-segment bar-burgundy" style="width: 46.6%;" title="الخيار المفضل: 46.6%"><span class="bar-val">46.6%</span></div>
+                        <div class="bar-segment bar-gold" style="width: 43.1%;" title="الشراء الفعلي: 43.1%"><span class="bar-val">43.1%</span></div>
+                        <div class="bar-segment bar-sand" style="width: 10.3%;" title="أخرى: 10.3%"><span class="bar-val">10.3%</span></div>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="chart-data-row">
+                    <div class="row-label">التاون هاوس</div>
+                    <div class="stacked-bar-container">
+                        <div class="bar-segment bar-burgundy" style="width: 35%;" title="الخيار المفضل: 35%"><span class="bar-val">35%</span></div>
+                        <div class="bar-segment bar-gold" style="width: 38%;" title="الشراء الفعلي: 38%"><span class="bar-val">38%</span></div>
+                        <div class="bar-segment bar-sand" style="width: 27%;" title="أخرى: 27%"><span class="bar-val">27%</span></div>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="chart-data-row">
+                    <div class="row-label">وحدات داخل مجمعات سكنية</div>
+                    <div class="stacked-bar-container">
+                        <div class="bar-segment bar-burgundy" style="width: 18%;" title="الخيار المفضل: 18%"><span class="bar-val">18%</span></div>
+                        <div class="bar-segment bar-gold" style="width: 27%;" title="الشراء الفعلي: 27%"><span class="bar-val">27%</span></div>
+                        <div class="bar-segment bar-sand" style="width: 55%;" title="أخرى: 55%"><span class="bar-val">55%</span></div>
+                    </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="chart-data-row">
+                    <div class="row-label">شقق في بنايات تقليدية</div>
+                    <div class="stacked-bar-container">
+                        <div class="bar-segment bar-burgundy" style="width: 16.7%;" title="الخيار المفضل: 16.7%"><span class="bar-val">16.7%</span></div>
+                        <div class="bar-segment bar-gold" style="width: 12.3%;" title="الشراء الفعلي: 12.3%"><span class="bar-val">12.3%</span></div>
+                        <div class="bar-segment bar-sand" style="width: 71%;" title="أخرى: 71%"><span class="bar-val">71%</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. DATA TABLE VIEW -->
+            <div id="pew-data-view" class="pew-data-table-container">
+                <table class="pew-data-table">
+                    <thead>
+                        <tr>
+                            <th>نوع العقار</th>
+                            <th>الخيار المفضل (%)</th>
+                            <th>الشراء الفعلي الواقعي (%)</th>
+                            <th>خيارات أخرى / مستبعد (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>المنزل المنفصل</td>
+                            <td>46.6%</td>
+                            <td>43.1%</td>
+                            <td>10.3%</td>
+                        </tr>
+                        <tr>
+                            <td>التاون هاوس</td>
+                            <td>35.0%</td>
+                            <td>38.0%</td>
+                            <td>27.0%</td>
+                        </tr>
+                        <tr>
+                            <td>وحدات داخل مجمعات سكنية</td>
+                            <td>18.0%</td>
+                            <td>27.0%</td>
+                            <td>55.0%</td>
+                        </tr>
+                        <tr>
+                            <td>شقق في بنايات تقليدية</td>
+                            <td>16.7%</td>
+                            <td>12.3%</td>
+                            <td>71.0%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Chart Footnotes -->
+            <div class="chart-footnotes">
+                ملاحظة: حرك مؤشر الفأرة (Hover) فوق كل عمود لعرض النسبة بدقة.<br>
+                المصدر: استطلاع تفضيلات السكن في بغداد.
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <h2 class="section-heading">المساحة المطلوبة والتصميم</h2>
+        <p>
+            رغم أن 72.2% من المشاركين أوضحوا أن المساحة التي يستطيعون تحمل تكلفتها لا تتجاوز 150 متراً مربعاً، إلا أن متطلباتهم التصميمية ظلت عالية. فقد اشترط 73.3% وجود ثلاث غرف نوم أو أكثر، وأكد نحو 60% على أهمية توفر حمامين.
+        </p>
+
+        <!-- Inline Secondary Image -->
+        <figure class="inline-figure">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="تصميم المطابخ والمساحات السكنية">
+        </figure>
+
+        <p>
+            على مستوى التصميم، فضل 41.2% المطبخ المغلق مقارنة بـ 29.6% للمفتوح. ويبحث الغالبية (92.5%) عن وحدات جاهزة ومكتملة التشطيب لتجنب تكاليف وأعباء البناء الإضافية. أما المساحة الخارجية (مثل الحديقة أو الساحة الخاصة) فكانت المطلب الأهم لـ 59.8%، وهو ما يفسر الاهتمام المتزايد بالـ "تاون هاوس" كخيار وسطي يوفر مساحة خارجية واستقلالية بسعر أقل من الفلل.
+        </p>
+
+        <!-- Section 3 -->
+        <h2 class="section-heading">الخدمات: الكهرباء أولاً</h2>
+        <p>
+            أثبت عامل الخدمات أنه محرك رئيسي في قرارات الشراء. وضع 52% من المشاركين توفر الكهرباء المستمرة (أو وجود مصدر بديل) ضمن أهم خمسة متطلبات للمنزل الجديد، بل واعتبرها 26.1% "الشرط الأهم" على الإطلاق متفوقة على كل الخيارات الأخرى. وينسحب هذا بوضوح على أسباب اختيار المجمعات السكنية؛ حيث برر 50.5% ممن فكروا بالسكن فيها ذلك بضمان موثوقية الخدمات (وتحديداً الكهرباء)، ثم توفر الأمن بنسبة 30.5%.
+        </p>
+
+        <!-- Section 4 -->
+        <h2 class="section-heading">عائق السعر وآليات التمويل</h2>
+        <p>
+            رغم الجاذبية الواضحة للمجمعات السكنية، يبقى السعر هو التحدي الأكبر. نحو 48.8% لم يفكروا بالسكن في مجمع، وكان السبب الرئيسي هو السعر الإجمالي المرتفع (34.8%)، وصعوبة تأمين الدفعة الأولى.
+        </p>
+        <p>
+            من الناحية المالية، صرح 73.3% أن ميزانيتهم الواقعية تقل عن 150 مليون دينار عراقي. وأغلب المشاركين لا يمكنهم دفع أكثر من 15% كدفعة أولى، مع التزام شهري يفضلون ألا يتجاوز 600 ألف دينار. أما آليات التمويل المفضلة، فتركزت في أقساط المطور العقاري (39.4%) والدفع النقدي (31.8%)، في حين كان دور القروض المصرفية محدوداً جداً ولم يتجاوز 11.6%.
+        </p>
+
+        <!-- Section 5 -->
+        <h2 class="section-heading">الفروق العمرية وسلوك المستأجرين</h2>
+        <p>
+            تختلف التفضيلات بوضوح بين الفئات العمرية. الفئة الشابة (25–34 عاماً) أكثر تقبلاً وأنماط السكن الحديثة؛ إذ أبدى 33.2% منهم رغبة في الشراء داخل المجمعات السكنية، كما تقبلوا فكرة الشقق بشكل أكبر. في المقابل، يميل معظم من هم فوق 55 عاماً إلى المنزل التقليدي المستقل.
+        </p>
+        <p>
+            من جهة أخرى، برز المستأجرون كشريحة نشطة تبحث عن التغيير. عبر 43.2% منهم عن بحثهم الجدي عن منزل خلال الأشهر الستة الماضية. واللافت أن 55.4% من المستأجرين يفضلون "التاون هاوس"، كونه يقدم لهم الاستقلالية التي يفتقدونها في الشقق المؤجرة بسعر واقعي.
+        </p>
+
+        <!-- Section 6 -->
+        <h2 class="section-heading">معايير اختيار الحي السكني</h2>
+        <p>
+            عند سؤال المشاركين عن الأحياء المفضلة في العاصمة، تصدرت المنصور، زيونة، واليرموك القائمة. لكن أسباب هذا الاختيار تركزت حول البيئة الهادئة والشوارع المشجرة (40.4%)، الأمن والسلامة (33.7%)، والقرب من العائلة (28.3%). أما سعر العقار كمعيار لاختيار المنطقة فتراجع إلى 9.4%، وتشير هذه النتائج إلى أن تفضيل المنطقة يرتبط أولاً بخصائص الحي والبيئة المحيطة، بينما تظهر الاعتبارات المالية بصورة أوضح عند الانتقال من التفضيل إلى قرار الشراء.
+        </p>
+
+        <!-- Section 7 -->
+        <h2 class="section-heading">الخلاصة</h2>
+        <p>
+            تؤكد بيانات الاستطلاع أن المشتري العراقي يبحث عن معادلة واضحة: مساحة مستقلة، خدمات يومية لا تنقطع، وبيئة آمنة. التحدي الحقيقي أمام المطورين العقاريين لا يكمن في الاختيار بين بناء الفلل أو الشقق، بل في تصميم منتجات سكنية تلبي هذه المتطلبات بأسعار وخطط دفع تلائم الدخل الحقيقي للعائلات.
+        </p>
+
+    </main>
+
+    <script>
+        function switchPewView(view) {
+            const chartView = document.getElementById('pew-chart-view');
+            const dataView = document.getElementById('pew-data-view');
+            const btnChart = document.getElementById('btn-chart');
+            const btnData = document.getElementById('btn-data');
+
+            if (view === 'data') {
+                chartView.style.display = 'none';
+                dataView.style.display = 'block';
+                btnData.classList.add('active');
+                btnChart.classList.remove('active');
+            } else {
+                chartView.style.display = 'block';
+                dataView.style.display = 'none';
+                btnChart.classList.add('active');
+                btnData.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
