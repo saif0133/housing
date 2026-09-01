@@ -480,6 +480,27 @@
     </main>
 
     <script>
+        function sendHeight() {
+  const height = document.documentElement.scrollHeight;
+
+  window.parent.postMessage(
+    {
+      type: "iframe-height",
+      height: height,
+    },
+    "https://iiacss.org"
+  );
+}
+
+window.addEventListener("load", sendHeight);
+window.addEventListener("resize", sendHeight);
+
+const observer = new ResizeObserver(() => {
+  sendHeight();
+});
+
+observer.observe(document.body);
+        
         function switchPewView(view) {
             const chartView = document.getElementById('pew-chart-view');
             const dataView = document.getElementById('pew-data-view');
